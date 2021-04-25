@@ -26,7 +26,7 @@
 8. 接著使用 ：git commit -am "week1" ，可以用git status查看作業是否完成 commit
 
 ### 交作業之前務必先檢查作業是否都沒有問題
-9.  git push origin week1 (將本地的資料推到ruofan的遠端)
+9.  git push origin week1 (將本地的資料推到遠端)
   
 10. 到 github 介面點選 pull request
 
@@ -36,7 +36,7 @@
 
 13. 看過自我檢測後才可以交作業
 
-14. 接著到Lidemy系統的d課程總覽，點繳交作業 貼上PR連結
+14. 接著到Lidemy系統的課程總覽，點繳交作業 貼上PR連結
 
 15. 助教看完作業後會merge branch 到master上
 
@@ -51,4 +51,6 @@
 1. 寫完作業發了 PR，助教 code review 完並 merge 了。
  
 2. 此時遠端 repo 的 master 的進度會是最新的，於是你會在 local 端 `git checkout` 到 master，用 `git pull origin master` 把 local 端的 master 和你遠端的 repo 同步。（到這裡都是一般交作業流程）
+
+補充 : 使用 git commit -am 時需要留意，指令的作用範圍僅限於「已追蹤」的檔案，如果有額外新增檔案的話，還是要記得使用指令 add 將檔案進行列管
 
