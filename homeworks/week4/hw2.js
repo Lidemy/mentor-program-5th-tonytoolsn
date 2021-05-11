@@ -2,7 +2,8 @@
 const request = require('request')
 // eslint-disable-next-line
 const process = require('process')
-const { argv } = process.argv
+// eslint-disable-next-line
+const argv = process.argv
 
 const method = argv[2]
 
@@ -27,7 +28,7 @@ switch (method) {
     break
 
   case 'read':
-    request('https://lidemy-book-store.herokuapp.com/books/'`＄{argv[3]}`, (error, response, body) => {
+    request(`https://lidemy-book-store.herokuapp.com/books/${argv[3]}`, (error, response, body) => {
       if (error) {
         console.log('error: ', error)
         return
@@ -60,7 +61,7 @@ switch (method) {
 
   case 'update':
     request.patch({
-      url: 'https://lidemy-book-store.herokuapp.com/books/'`＄{argv[3]}`,
+      url: `https://lidemy-book-store.herokuapp.com/books/${argv[3]}`,
       form: {
         name: argv[4]
       }
@@ -75,7 +76,7 @@ switch (method) {
 
   case 'delete':
     request.delete({
-      url: 'https://lidemy-book-store.herokuapp.com/books/'`＄{argv[3]}`
+      url: `https://lidemy-book-store.herokuapp.com/books/${argv[3]}`
     }, (error, response, body) => {
       if (error) {
         console.log('error: ', error)

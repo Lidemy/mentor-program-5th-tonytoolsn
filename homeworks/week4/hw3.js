@@ -5,7 +5,7 @@ const process = require('process')
 // eslint-disable-next-line
 const name = process.argv[2]
 
-request('https://restcountries.eu/rest/v2/name/'`＄{name}`, (error, response, body) => {
+request(`https://restcountries.eu/rest/v2/name/${name}`, (error, response, body) => {
   const json = JSON.parse(body)
   for (let i = 0; i < json.length; i++) {
     console.log('============')
