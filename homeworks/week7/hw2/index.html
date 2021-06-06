@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- normalize.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <!-- google font-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>餐廳頁面</title>
+    <style>
+      /*****
+      Reset
+      *****/
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /*****
+      navbar
+      *****/
+      body {
+        font-family: 'Noto Sans TC', Helvetica, sans-serif;
+      }
+
+      h2 {
+        margin: 0;
+      }
+      .wrapper {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0px 12px;
+      }
+      .navbar {
+        box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+      }
+      .navbar .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 84px;
+        background: white;
+        padding: 0px 20px;
+      }
+
+      .navbar__site-name {
+        color: #489846;
+        font-size: 36px;
+      }
+
+      .navbar__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        font-size: 18px;
+      }
+
+      .navbar__list li {
+        margin-left: 12px;
+        border-radius: 8px;
+        transition: background 0.1s;
+      }
+
+      .navbar__list li.active,
+      .navbar__list li:hover {
+        background: #ff7286;
+      }
+
+      .navbar__list li.active a,
+      .navbar__list li:hover a {
+        color: white;
+      }
+
+      .navbar__list li a {
+        display: block;
+        text-decoration: none;
+        color: black;
+        padding: 12px 24px;
+      }
+
+      /*****
+      footer
+      *****/
+      footer {
+        margin-top: 48px;
+      }
+
+      .footer__bottom {
+        background: #35564b;
+        padding: 12px;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+      }
+
+      .footer__top {
+        background: #e8efee;
+        padding: 32px;
+        color: #484848;
+      }
+
+      .footer__top .wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .footer__info {
+        margin-right: 16px;
+      }
+
+      .footer__info div + div {
+        margin-top: 10px;
+      }
+
+      .footer__site {
+        font-size: 36px;
+        color: #489846;
+      }
+
+      @media (max-width: 768px) {
+        .navbar .wrapper {
+          height: 120px;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 0px;
+        }
+
+        .navbar__site-name {
+          margin-top: 10px;
+        }
+
+        .navbar__list {
+          display: flex;
+          width: 100%;
+        }
+
+        .navbar__list li {
+          flex: 1;
+          margin-left: 0;
+          border-radius: 0;
+          text-align: center;
+        }
+
+        .btn-query {
+          margin-left: 0;
+          margin-top: 16px;
+        }
+
+        .section__images {
+          flex-direction: column;
+        }
+
+        .section__images div {
+          width: 100%;
+        }
+
+        .footer__top .wrapper {
+          flex-direction: column-reverse;
+        }
+
+        .footer__info {
+          margin-right: 0;
+          margin-top: 16px;
+        }
+        .section__evaluation {
+          flex-direction: column;
+        }
+        .evaluation {
+          width: calc(100%);
+          margin: 0px;
+        }
+        .evaluation + .evaluation {
+          margin-top: 80px;
+        }
+      }
+      /*****
+      Menu
+      *****/
+      .Menu {
+        text-align: center;
+        margin-top: 80px;
+        height: 70vh;
+      }
+
+      .Menu__title {
+        border-left: 15px solid #a3dea2;
+        display: inline-block;
+        font-size: 36px;
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 39px;
+      }
+
+      .Menu__desc {
+        font-size: 16px;
+        color: #000000;
+        line-height: 30px;
+      }
+
+      .faq-block {
+        max-width: 768px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        display: flex;
+        text-align: left;
+        border-bottom: 2px solid #a6e2c0;
+        padding-bottom: 24px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: height 0.2s;
+      }
+
+      .faq-item__hide {
+        height: 40px;
+      }
+
+      .faq-item__number {
+        color: #70b282;
+        font-size: 24px;
+        margin-right: 16px;
+        line-height: 40px;
+      }
+
+      .faq-item__question {
+        font-size: 18px;
+        margin: 0;
+        text-align: left;
+        line-height: 40px;
+      }
+
+      .faq-item__answer {
+        font-size: 16px;
+        text-align: left;
+        line-height: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="wrapper">
+        <div class="navbar__site-name">
+          Just A Bite!
+        </div>
+        <ul class="navbar__list">
+          <li class="active"><a href="#">抽個大獎</a></li>
+          <li><a href="#">我要點餐</a></li>
+          <li><a href="#">查詢訂單</a></li>
+          <li><a href="#">常見問題</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="Menu">
+      <h2 class="Menu__title">
+        常見問題 Q & A
+      </h2>
+      <div class="faq-block">
+        <div class="faq-item faq-item__hide">
+          <div class="faq-item__number">Q1.</div>
+          <div class="faq-item__content">
+            <div class="faq-item__question">
+              該如何加入會員呢？
+            </div>
+            <div class="faq-item__answer">
+              電腦版：請您點選右上角「登入/註冊」，可選擇「手機號碼驗證註冊」或「使用Facebook快速註冊」。
+              <br />
+              手機版/APP：請您點選右下角「個人」，可選擇以「手機號碼」、「Facebook」或「Apple
+              ID」(限iOS用戶)註冊。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item faq-item__hide">
+          <div class="faq-item__number">Q2.</div>
+          <div class="faq-item__content">
+            <div class="faq-item__question">
+              忘記密碼怎麼辦？
+            </div>
+            <div class="faq-item__answer">
+              若您忘記密碼，請您先「會員登入」後，點選「忘記密碼」
+              再輸入註冊的電子郵件/手機號碼，系統會自動發送密碼重設通知給您，再請您依照通知步驟重新設定密碼即可。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item faq-item__hide">
+          <div class="faq-item__number">Q3.</div>
+          <div class="faq-item__content">
+            <div class="faq-item__question">
+              忘記登入的會員帳號？
+            </div>
+            <div class="faq-item__answer">
+              煩請直接與客服中心聯繫。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item faq-item__hide">
+          <div class="faq-item__number">Q4.</div>
+          <div class="faq-item__content">
+            <div class="faq-item__question">
+              該如何修改個人資料及密碼？
+            </div>
+            <div class="faq-item__answer">
+              電腦版：請「會員登入」至「個人資料及密碼修改」即可進行變更。
+              <br />
+              手機版/APP：請「會員登入」後至「個人」上方大頭照點選「姓名」後即可進行變更。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item faq-item__hide">
+          <div class="faq-item__number">Q5.</div>
+          <div class="faq-item__content">
+            <div class="faq-item__question">
+              訂閱及取消電子報
+            </div>
+            <div class="faq-item__answer">
+              請點選官網右上角【訂閱電子報】，您可由此自行「 申請」 或「 取消」
+              電子報寄送服務。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer__top">
+        <div class="wrapper">
+          <div class="footer__info">
+            <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+            <div>訂位專線：02-1314-5566</div>
+            <div>
+              營業時間：週一〜週五 09:00~18:00 /
+              週六、週日、國定假日（含連假）休息
+            </div>
+            <div>email：service@justabite.com.tw</div>
+          </div>
+          <div>
+            <div class="footer__site">Just A Bite!</div>
+            <div>Facebook / Instagram / YouTube</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        Copyright © 2020 Just A Bite All Rights Reserved.
+        咬一口股份有限公司版權所有
+      </div>
+    </footer>
+    <script>
+      document
+        .querySelector('.faq-block')
+        .addEventListener('click', function (e) {
+          const element = e.target.closest('.faq-item')
+          if (element) {
+            element.classList.toggle('faq-item__hide')
+          }
+        })
+    </script>
+  </body>
+</html>

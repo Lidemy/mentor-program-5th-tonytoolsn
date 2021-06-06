@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hw3</title>
+    <style>
+      .wrapper {
+        width: 300px;
+        border: 1px solid #eee;
+        margin: auto;
+        padding: 20px;
+        background: #fff8dc;
+      }
+      .todo-title {
+        text-align: center;
+        padding: 10px 0;
+      }
+      button {
+        background: #deb887;
+        border: none;
+        color: #eee;
+        text-align: center;
+        text-decoration: none;
+      }
+      .input-todo {
+        border-color: rgba(0, 0, 0, 0.3);
+        width: 220px;
+      }
+
+      .todos-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+      }
+      .todo {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+      }
+      .todo:hover {
+        background: #eee;
+      }
+      .todo-dec {
+        flex: 1;
+      }
+      .todo.done .todo-dec {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="todo-title">Todo List</div>
+      <div class="todos-top">
+        <input type="text" class="input-todo" />
+        <button class="btn-new">Create</button>
+      </div>
+      <div class="todos">
+        <div class="todo">
+          <input type="checkbox" class="todo-check" />
+          <div class="todo-dec">代辦事項</div>
+          <button class="btn-delete">Delete</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function escapeHtml(unsafe) {
+        return unsafe
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;')
+      }
+      document.querySelector('.btn-new').addEventListener('click', function () {
+        const value = document.querySelector('.input-todo').value
+        if (!value) {
+          alert('輸入請勿填空!')
+        } else {
+          const todo = document.createElement('div')
+          todo.classList.add('todo')
+          todo.innerHTML = `
+                <input type="checkbox" class="todo-check" />
+                <div class="todo-dec">${escapeHtml(value)}</div>
+                <button class="btn-delete">Delete</button>
+                `
+          document.querySelector('.todos').appendChild(todo)
+          document.querySelector('.input-todo').value = ''
+        }
+      })
+      document.querySelector('.todos').addEventListener('click', function (e) {
+        if (e.target.classList.contains('btn-delete')) {
+          e.target.parentNode.remove()
+        }
+        if (e.target.classList.contains('todo-check')) {
+          if (e.target.checked) {
+            e.target.parentNode.classList.add('done')
+          } else {
+            e.target.parentNode.classList.remove('done')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
